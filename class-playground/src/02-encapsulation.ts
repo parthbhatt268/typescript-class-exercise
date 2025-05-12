@@ -13,3 +13,41 @@
  *   2. Deposit 50, withdraw 30, withdraw 500
  *   3. Console.log each result & final balance
  */
+
+ export default class BankAccount {
+    public owner: string;
+    private balance: number;
+
+    constructor(owner: string, initialBalance:  number) {
+        this.owner = owner;
+        this.balance = initialBalance;
+    }
+
+    deposit(amount: number) {
+        this.balance = this.balance + amount;
+    }
+
+    withdraw(amount: number) {
+        this.balance = this.balance - amount;
+    }
+
+    getBalance() {
+        return this.balance;
+    }
+ }
+
+ const john = new BankAccount('JOHN', 1000);
+ const marie = new BankAccount('MARIE', 2000);
+
+ john.deposit(3000);
+ john.withdraw(500);
+ const johnBalance = john.getBalance();
+ console.log('🚀 johnBalance:', johnBalance);
+
+ marie.deposit(5000);
+ marie.withdraw(8000);
+ const marieBalance = marie.getBalance();
+ console.log('🌙 marieBalance', marieBalance);
+
+
+ 
