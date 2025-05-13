@@ -1,6 +1,7 @@
 import Person from '../src/01-basic-class';
 import BankAccount from '../src/02-encapsulation';
 import { ElectricVehicle } from '../src/03-inheritance';
+import { CarFactory } from '../src/factory/carFactory';
 
 describe('test the basic class', () => {
     it('test Basic class', () => {
@@ -33,5 +34,12 @@ describe('Vehicle', () => {
         carx.charge(5);
 
         expect(carx.getCurrentCharge()).toBe(83);
+    })
+})
+
+describe("Car Factory", () => {
+    it("Check if BMW is created", () => {
+        const crax = CarFactory.create('BMW');
+        expect(crax.drive()).toBe('BMW car is created');
     })
 })
