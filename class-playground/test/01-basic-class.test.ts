@@ -1,6 +1,7 @@
 import Person from '../src/01-basic-class';
 import BankAccount from '../src/02-encapsulation';
 import { ElectricVehicle } from '../src/03-inheritance';
+import { PizzaBuilder } from '../src/Builder';
 import { CarFactory } from '../src/factory/carFactory';
 import ConfigManager from '../src/Singleton';
 
@@ -57,5 +58,16 @@ describe("Singleton", () => {
         expect(cfg2).toBe(cfg1);
         // And the updated value should persist
         expect(cfg2.get("ENV")).toBe("production");
+    });
+})
+
+describe("Builder", () => {
+    it("Builder creates Pizza with selected toppings", () => {
+    const pizza = new PizzaBuilder("large")
+        .addCheese()
+        .addPepper()
+        .build();
+
+    expect(pizza.describe()).toBe("A large pizza with cheese, pepper.");
     });
 })
