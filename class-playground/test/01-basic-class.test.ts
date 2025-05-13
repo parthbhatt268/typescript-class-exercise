@@ -2,6 +2,7 @@ import Person from '../src/01-basic-class';
 import BankAccount from '../src/02-encapsulation';
 import { ElectricVehicle } from '../src/03-inheritance';
 import { CarFactory } from '../src/factory/carFactory';
+import ConfigManager from '../src/Singleton';
 
 describe('test the basic class', () => {
     it('test Basic class', () => {
@@ -42,4 +43,19 @@ describe("Car Factory", () => {
         const crax = CarFactory.create('BMW');
         expect(crax.drive()).toBe('BMW car is created');
     })
+})
+
+describe("Singleton", () => {
+    it("Singleton instance is unique and preserves settings", () => {
+        const cfg1 = ConfigManager.getInstance();
+
+        // Change ENV and ensure it's reflected on the “same” instance
+        cfg1.set("ENV", "production");
+        
+        const cfg2 = ConfigManager.getInstance();
+        // Both references should be to the same object
+        expect(cfg2).toBe(cfg1);
+        // And the updated value should persist
+        expect(cfg2.get("ENV")).toBe("production");
+    });
 })
